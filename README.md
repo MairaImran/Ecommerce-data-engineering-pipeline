@@ -51,9 +51,9 @@ Products
 Payments
 
 Tech Stack
-PostgreSQL	
-SQL	
-Git	
+PostgreSQL
+SQL
+Git
 GitHub
 Database Design
 
