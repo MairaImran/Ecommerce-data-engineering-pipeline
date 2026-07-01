@@ -1,0 +1,60 @@
+Customers					
+customer_id   PRIMARY KEY
+customer_unique_id    
+customer_zipcode
+customer_city
+customer_state
+
+
+Orders 
+Order_id    PRIMARY KEY
+customer_id
+order_status
+order_purchase_timestamp
+order_approved_at
+order_delivered_carrier_date
+order_Delivered_customer_Date
+order_estimated_delivery_Date
+
+Order items
+Order_id
+order_item_id
+product_id
+shipping_limit_date
+price
+freight_value
+
+Products
+product_id     PRIMARY KEY
+product_category_name
+product_name_length
+product_description_length
+product_photos_qty
+product_weight
+product_length
+product_height
+product_width
+
+Order payments
+order_id
+payment_sequential
+payment_type
+payment_installments
+payment_value
+
+
+Relationship - Data Flow
+customers
+   │
+   │ customer_id
+   ▼
+orders
+   │
+   │ order_id
+   ▼
+order_items ─── product_id ─── products
+
+orders
+   │
+   ▼
+order_payments
