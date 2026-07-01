@@ -1,152 +1,142 @@
-End-to-End E-commerce Data Engineering Pipeline
+E-commerce Data Engineering Pipeline 
+Overview
 
-A real-world Data Engineering project that transforms raw e-commerce transactional data into an analytics-ready reporting layer using PostgreSQL and SQL best practices.
+End-to-end data engineering project that transforms raw e-commerce transactional data (Olist dataset) into a structured analytics-ready data warehouse layer using PostgreSQL and advanced SQL practices.
 
-Project Overview
-
-This project simulates a real-world Data Engineering workflow using the Olist Brazilian E-commerce Dataset.
-
-The primary objective is to transform raw transactional data into an analytics-ready reporting layer by applying PostgreSQL and SQL best practices.
-
-Rather than querying raw operational tables directly, reusable SQL Views were created to separate business logic from the source data. This design closely mirrors how reporting layers are implemented in modern data warehouse environments, providing clean, consistent, and reusable datasets for analytics and business intelligence.
+The project simulates how modern data teams build scalable reporting systems for business intelligence and decision-making.
 
 Business Problem
 
-An e-commerce company stores millions of transactional records inside PostgreSQL.
+E-commerce companies generate large volumes of transactional data, but:
 
-Business users require reliable, standardized datasets for reporting and analytics without directly querying operational tables.
+Data is fragmented across operational tables
+Business users cannot directly query raw data efficiently
+KPI definitions are inconsistent across teams
+Reporting queries are slow and repetitive
 
-The objective of this project is to build a centralized reporting layer that delivers clean, consistent, and reusable datasets for downstream reporting and dashboard development.
+Objective
 
-Project Architecture
-Kaggle Olist Dataset (CSV)
-            │
-            ▼
+Design a centralized analytics layer that provides:
+
+Clean, validated datasets
+Standardized business KPIs
+Reusable reporting views
+Fast BI-ready outputs
+
+Solution Summary (What I Built)
+
+I designed and implemented a layered data warehouse architecture:
+
+Raw data ingestion into PostgreSQL
+Data validation and quality checks
+SQL-based transformation layer
+Analytics reporting layer using reusable views
+Star schema design for optimized querying
+
+Architecture
+Raw Data (Olist CSV - Kaggle)
+        ↓
 PostgreSQL Raw Tables
-            │
-            ▼
-Data Validation & Quality Checks
-            │
-            ▼
-SQL Transformations
-            │
-            ▼
-Reporting Views
-            │
-            ▼
-Analytics-Ready Data
+        ↓
+Data Quality & Validation Layer
+        ↓
+SQL Transformation Layer (CTEs, Joins, Window Functions)
+        ↓
+Analytics Layer (SQL Views / Data Marts)
+        ↓
+Power BI / Reporting Outputs
 
-Dataset
+Data Model
+Fact Table
+fact_orders → order-level transactional metrics (revenue, payments, delivery status)
+Dimension Tables
+dim_customers
+dim_products
+dim_sellers
+dim_date
+Design Approach
+Star schema optimized for analytics workloads
+Reduced query complexity via denormalization
+Enforced referential integrity across entities
 
-Source
+Data Pipeline Breakdown
+1. Data Ingestion
+Loaded CSV datasets into PostgreSQL
+Verified schema mapping and record completeness
+2. Data Quality Layer
+Implemented checks for:
+Null value detection
+Duplicate records
+Referential integrity validation
+Foreign key consistency
+3. Transformation Layer
+Used advanced SQL techniques:
+JOINs across multiple tables
+Aggregations for KPI creation
+CASE statements for business rules
+CTEs for modular logic
+Window functions for ranking & trends
+4. Analytics Layer (Reporting Views)
+Created reusable SQL views:
+vw_monthly_sales → Revenue trends & growth tracking
+vw_customer_revenue → Customer lifetime value (CLV)
+vw_product_performance → Product ranking & performance
 
-Olist Brazilian E-commerce Public Dataset (Kaggle)
+These act as lightweight data marts for BI tools.
 
-Tables Used
+Business Impact Delivered
 
-Customers
-Orders
-Order Items
-Products
-Payments
+This project enables:
+
+Fast monthly revenue tracking
+Customer value analysis (CLV)
+Product performance optimization
+Order delivery insights
+Standardized KPI definitions across reporting
 
 Tech Stack
-PostgreSQL
-SQL
-Git
-GitHub
-Database Design
+PostgreSQL (Data Warehouse)
+SQL (Advanced Analytics Engineering)
+Git & GitHub (Version Control & Documentation)
+Power BI (Downstream Reporting)
 
-Database Design
-
-The database was designed using relational modeling principles.
-
-Relationships
-Customers → Orders
-Orders → Order Items
-Products → Order Items
-Orders → Payments
-
-To ensure referential integrity, primary and foreign keys were defined across all related tables.
-
-Data Engineering Workflow
-1. Database Design
-Created relational database tables
-Selected appropriate data types
-Defined primary keys
-2. Data Ingestion
-Imported CSV files into PostgreSQL
-Verified row counts
-Validated successful imports
-3. Data Quality
-Performed multiple validation checks, including:
-Null value detection
-Duplicate record detection
-Missing foreign keys
-Referential integrity validation
-4. SQL Transformations
-Business logic was implemented using:
-JOINs
-Aggregations
-CASE Statements
-Common Table Expressions (CTEs)
-Window Functions
-5. Reporting Layer
-Reusable SQL Views were created to support analytics and reporting.
-Reporting Views
-vw_monthly_sales
-vw_customer_revenue
-vw_product_performance
-
-These views centralize business logic and simplify downstream reporting.
-
-Skills Demonstrated
-Relational Database Design
-PostgreSQL
-SQL
-Data Validation
-Data Cleaning
-Data Modeling
-SQL Views
-Window Functions
-Reporting Layer Design
-Git
-GitHub Documentation
+Key Engineering Skills Demonstrated
+Data Modeling (Star Schema Design)
+SQL Engineering (Joins, CTEs, Window Functions)
+Data Quality & Validation
+Analytics Layer Design
+Reporting System Architecture
+Git-based project structuring
 
 Future Improvements
-
-This project can be extended by implementing a modern cloud-based Data Engineering architecture.
-
-Potential enhancements include:
-
-Automating data ingestion using Python
-Building ETL pipelines
-Deploying PostgreSQL on AWS RDS
-Containerizing the project using Docker
-Orchestrating workflows with Apache Airflow
+Automate pipeline using Python ETL scripts
+Implement dbt for transformation orchestration
+Deploy PostgreSQL on AWS RDS
+Add Apache Airflow for scheduling
+Introduce data testing framework 
+Dockerize for reproducibility
 
 Project Outcome
 
-This project demonstrates how raw transactional data can be transformed into an organized reporting layer that supports business analytics and dashboard development.
+This project demonstrates how raw transactional data can be transformed into a scalable analytics infrastructure that supports:
 
-By separating business logic from operational data, the solution improves:
+Business intelligence
+KPI standardization
+Performance analytics
+Data-driven decision-making
 
-Data consistency
-Query performance
-Reusability
-Maintainability
-Scalability
-
-This architecture reflects common practices used by modern Data Engineering teams in production environments.
-
-Acknowledgements
+It reflects the end-to-end workflow used in modern data engineering teams.
 
 Dataset
-
 Olist Brazilian E-commerce Public Dataset (Kaggle)
 
-Thank You
 
-Thank you for taking the time to review this project.
 
-Feedback, suggestions, and constructive contributions are always appreciated.
+
+
+
+
+
+
+
+Brazilian E-commerce Public Dataset (Kaggle)
